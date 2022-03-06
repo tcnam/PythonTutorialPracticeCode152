@@ -1,3 +1,4 @@
+from ast import Delete
 from pickle import FALSE, TRUE
 from re import X, search
 from tkinter import Y
@@ -99,6 +100,26 @@ class LinkedListHinhTron:
             return
         else:
             self.addAfter(search_result,b)
+
+    def deleteHead(self):
+        if self.__pHead==None:
+            return
+        else:
+            self.__pHead=self.__pHead.pNext
+            if self.__pHead==None:
+                self.__pTail=None
+    
+    def deleteAfter(self,a:NodeHinhTron):
+        if a!=None and a!=self.__pTail:
+            tempNode=a.pNext
+            a.pNext=tempNode.pNext
+
+    def deleteAfterSpecificValue(self, a:HinhTron):
+        search_result=self.search(a)
+        if search_result==None:
+            return
+        else:
+            self.deleteAfter(search_result)
             
     def printListOfNodes(self):
         if self.__pHead == None:
@@ -117,7 +138,11 @@ DSHInhTron.addHead(NodeHinhTron(HinhTron(1,1,2)))
 DSHInhTron.addTail(NodeHinhTron(HinhTron(2,2,3)))
 DSHInhTron.addTail(NodeHinhTron(HinhTron(3,3,4)))
 DSHInhTron.addAfterSpecificValue(HinhTron(1,1,2),NodeHinhTron(HinhTron(4,4,5)))
+print("DS hinh tron truoc khi xoa:")
+DSHInhTron.printListOfNodes()
 
+print("DS hinh tron sau khi xoa:")
+DSHInhTron.deleteAfterSpecificValue(HinhTron(4,4,5))
 DSHInhTron.printListOfNodes()
 
 
