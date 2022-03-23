@@ -44,9 +44,6 @@ class NodeHinhTron:
     def __repr__(self):
         return f"Node hình tròn có tâm:({self.__info.x},{self.__info.y}) và bán kính: {self.__info.r}"
     
-    
-
-
 class LinkedListHinhTron:
     def __init__(self) -> None:
         self.__pHead=None
