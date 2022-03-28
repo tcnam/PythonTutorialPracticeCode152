@@ -150,6 +150,57 @@ class DoubleLinkedListDiem:
     def addBeforeSpecificDiem(self,x:Diem,b:NodeDiem):
         self.addBefore(self.search(x),b)
 
+    def removeHead(self):
+        if self.__pHead==None:
+            return
+        else:
+            self.__pHead=self.__pHead.pNext
+            if self.__pHead==None:
+                self.__pTail=None
+            else:
+                self.__pHead.pPrev=None
+    
+    def removeTail(self):
+        if self.__pHead==None:
+            return
+        else:
+            if self.__pHead==self.__pTail:
+                self.__pHead=None
+                self.__pTail=None
+            else:
+                self.__pTail=self.__pTail.pPrev
+                self.__pTail.pNext=None
+    
+    def removeAfter(self, a:NodeDiem):
+        if self.__pHead==None:
+            return
+        else:
+            if a.pNext!=None:              ## a is not pTail
+                if a.pNext==self.__pTail:
+                    a.pNext=None
+                    self.__pTail=a
+                else:
+                    a.pNext=a.pNext.pNext
+                    a.pNext.pPrev=a
+    
+    def removeAfterSpecificDiem(self, x:Diem):
+        self.removeAfter(self.search(x))
+
+    def removeBefore(self, a:NodeDiem):
+        if self.__pHead==None:
+            return
+        else:
+            if a.pPrev!=None:             ##a is not pHead
+                if a.pPrev==self.__pHead:
+                    a.pPrev=None
+                    self.__pHead=a
+                else:
+                    a.pPrev=a.pPrev.pPrev
+                    a.pPrev.pNext=a
+    
+    def removeBeforeSpecificDiem(self, x:Diem):
+        self.removeBefore(self.search(x))
+
     @staticmethod
     def equal(a:Diem, b:Diem):
         if a.x==b.x and a.y==b.y and a.z==b.z:
@@ -179,7 +230,7 @@ double_linked_list.addTail(c)
 double_linked_list.addHead(d)
 double_linked_list.printListOfNodes()
 print("Danh sach sau khi them:")
-double_linked_list.addAfterSpecificDiem(Diem(10,11,12),e)
-double_linked_list.addBeforeSpecificDiem(Diem(4,5,6),f)
+
+double_linked_list.removeBeforeSpecificDiem(Diem(7,8,9))
 double_linked_list.printListOfNodes()
     
