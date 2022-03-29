@@ -2,7 +2,7 @@ import pandas as pd
 from pathlib import Path
 from datetime import datetime
 
-def MonHoc():
+def DieuKien():
     path=str(Path(__file__).resolve())
     path=path.replace('.py','.xlsx')
     print(path)
@@ -14,12 +14,11 @@ def MonHoc():
 
     for i in df.index:
         mamh=df.iloc[i][0]
-        tenmh=df.iloc[i][1]
-        tclt=df.iloc[i][2]
-        tcth=df.iloc[i][3]
-        makhoa=df.iloc[i][4]
-        SQLQuerries=SQLQuerries + "insert into MONHOC(MAMH, TENMH, TCLT, TCTH, MAKHOA) values ('{}','{}',{} , {},'{}')\n".format(mamh, tenmh, tclt, tcth,makhoa)
+        mamh_truoc=df.iloc[i][1]
+        SQLQuerries=SQLQuerries + "insert into DIEUKIEN(MAMH, MAMH_TRUOC) values ('{}','{}')\n".format(mamh, mamh_truoc)
 
     print(SQLQuerries)
     return SQLQuerries
+
+
 
