@@ -9,14 +9,14 @@ def getTableName(currentName:str):
     result=currentName.split("_")[-2]
     return result
 
-def cusnOrHist(currentName:str):
+def isHist(currentName:str):
     result=currentName.split("_")[1]
-    if (result=='HIST'):
+    if result=='HIST':
         return True
     else:
         return False
 
-print(cusnOrHist('V_HIST_ANEK_G0'))
+print(isHist('V_HIST_ANEK_G0'))
 data2 =pd.read_excel(r'demo1.xlsx', engine='openpyxl')
 df2=pd.DataFrame(data2)
 
@@ -58,15 +58,14 @@ for synonym_name in synonym_names:
             #print('number of collumns:'+str(i-index))
             index=i
             #print(index)
-            collumn_name=concatenated_df.iloc[i-1][1]
-            owner=concatenated_df.iloc[i-1][2]
             create_view_command=create_view_command+'from\n\t'+owner+'.'+synonym_name
             #print(getTableName(synonym_name))
             for key in area_dict.keys():
                 if getTableName(synonym_name)==key:
                     create_view_command=create_view_command+'\n where \n\t'+area_dict[key]
-                    if cusnOrHist(synonym_name)==True:
+                    if isHist(synonym_name)==True:
                         create_view_command=create_view_command+"\n\t or tech_dml_flag = 'D'"
+                    break
                 
             print(create_view_command)
             f.write(create_view_command+'\n')
@@ -80,8 +79,9 @@ for synonym_name in synonym_names:
             for key in area_dict.keys():
                 if getTableName(synonym_name)==key:
                     create_view_command=create_view_command+'\n where \n\t'+area_dict[key]
-                    if cusnOrHist(synonym_name)==True:
+                    if isHist(synonym_name)==True:
                         create_view_command=create_view_command+"\n\t or tech_dml_flag = 'D'"
+                    break
             print(create_view_command)
             f.write(create_view_command+'\n')
 
