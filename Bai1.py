@@ -38,5 +38,3 @@ for i in range(len(newlist)):
     sum=sum+newlist[i]*pow(10,i)
 print(sum)
 
-
-print(res)

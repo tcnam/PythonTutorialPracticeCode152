@@ -2,7 +2,7 @@ import pandas as pd
 from pathlib import Path
 from datetime import datetime
 
-def Khoa():
+def Khoa(sql_version:int):
     path=str(Path(__file__).resolve())
     path=path.replace('.py','.xlsx')
     print(path)
@@ -20,7 +20,10 @@ def Khoa():
             ngtlap=datetime.strptime(ngtlap, '%d/%m/%Y')
         print (ngtlap)
         trgkhoa=df.iloc[i][3]
-        SQLQuerries=SQLQuerries + "insert into KHOA(MAKHOA, TENKHOA, NGTLAP, TRGKHOA) values ('{}','{}','{}','{}')\n".format(makhoa, tenkhoa, ngtlap.date(), trgkhoa)
+        if sql_version==1:
+            SQLQuerries=SQLQuerries + "insert into KHOA(MAKHOA, TENKHOA, NGTLAP, TRGKHOA) values ('{}','{}','{}','{}')\n".format(makhoa, tenkhoa, ngtlap.date(), trgkhoa)
+        elif sql_version==2:
+            SQLQuerries=SQLQuerries + "insert into KHOA(ma_khoa, ten_khoa, ng_tlap, tr_khoa) values ('{}','{}','{}','{}');\n".format(makhoa, tenkhoa, ngtlap.date(), trgkhoa)
 
     print(SQLQuerries)
     return SQLQuerries

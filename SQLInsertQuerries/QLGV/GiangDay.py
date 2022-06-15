@@ -2,7 +2,7 @@ import pandas as pd
 from pathlib import Path
 from datetime import datetime
 
-def GiangDay():
+def GiangDay(sql_version:int):
     path=str(Path(__file__).resolve())
     path=path.replace('.py','.xlsx')
     print(path)
@@ -24,7 +24,10 @@ def GiangDay():
         denngay=df.iloc[i][6]
         if type(denngay)==str:
             denngay=datetime.strptime(denngay, '%d/%m/%Y')
-        SQLQuerries=SQLQuerries + "insert into GIANGDAY(MALOP, MAMH, MAGV, HOCKY, NAM, TUNGAY, DENNGAY) values ('{}','{}','{}',{},{}, '{}','{}')\n".format(malop, mamh, magv, hocky,nam, tungay.date(), denngay.date())
+        if sql_version==1:
+            SQLQuerries=SQLQuerries + "insert into GIANGDAY(MALOP, MAMH, MAGV, HOCKY, NAM, TUNGAY, DENNGAY) values ('{}','{}','{}',{},{}, '{}','{}')\n".format(malop, mamh, magv, hocky,nam, tungay.date(), denngay.date())
+        elif sql_version==2:
+            SQLQuerries=SQLQuerries + "insert into GIANGDAY(ma_lop, ma_mh, ma_gv, hoc_ky, nam, tu_ngay, den_ngay) values ('{}','{}','{}',{},{}, '{}','{}');\n".format(malop, mamh, magv, hocky,nam, tungay.date(), denngay.date())
 
     print(SQLQuerries)
     return SQLQuerries

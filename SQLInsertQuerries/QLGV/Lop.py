@@ -2,7 +2,7 @@ import pandas as pd
 from pathlib import Path
 from datetime import datetime
 
-def Lop():
+def Lop(sql_version:int):
     path=str(Path(__file__).resolve())
     path=path.replace('.py','.xlsx')
     print(path)
@@ -18,7 +18,10 @@ def Lop():
         trglop=df.iloc[i][2]
         siso=df.iloc[i][3]
         magvcn=df.iloc[i][4]
-        SQLQuerries=SQLQuerries + "insert into LOP(MALOP, TENLOP, TRGLOP, SISO, MAGV) values ('{}','{}','{}', {},'{}')\n".format(malop, tenlop, trglop, siso,magvcn)
+        if sql_version==1:
+            SQLQuerries=SQLQuerries + "insert into LOP(MALOP, TENLOP, TRGLOP, SISO, MAGV) values ('{}','{}','{}', {},'{}')\n".format(malop, tenlop, trglop, siso,magvcn)
+        elif sql_version==2:
+            SQLQuerries=SQLQuerries + "insert into LOP(ma_lop, ten_lop, trg_lop, si_so, ma_gvcn) values ('{}','{}','{}', {},'{}');\n".format(malop, tenlop, trglop, siso,magvcn)
 
     print(SQLQuerries)
     return SQLQuerries
