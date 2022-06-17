@@ -55,11 +55,12 @@ select
 	TECH_TIMESTAMP,
 	TECH_TIMESTAMP_NUMBER,
 	RDIF_TECH_TIMESTAMP,
-	BUKRS,
-	from
+	BUKRS
+from
 	RAWB_FAC.V_CUSN_ANEK_G0
  where 
 	BUKRS = '3130'
+
 select
 	MANDT,
 	BUKRS,
@@ -118,12 +119,12 @@ select
 	TECH_DML_FLAG,
 	TECH_TIMESTAMP_NUMBER,
 	RDIF_TECH_TIMESTAMP,
-	RDIF_TECH_TIMESTAMP_NUMBER,
-	from
+	RDIF_TECH_TIMESTAMP_NUMBER
+from
 	RAWB_FAC.V_HIST_ANEK_G0
- where 
+where 
 	BUKRS = '3130'
-	 or tech_dml_flag = 'D'
+
 select
 	ANLN2,
 	GJAHR,
@@ -154,13 +155,14 @@ select
 	ZUJHR,
 	AFABE,
 	LNRAN,
-	ANLN1,
-	from
+	ANLN1
+from
 	RAWB_FAC.V_CUSN_ANEP_G0
  where 
 	BUKRS = '3130'
-AND
-AFABE = '40'
+	AND
+	AFABE = '40'
+	
 select
 	AUGLN,
 	ANUPD,
@@ -194,12 +196,11 @@ select
 	TECH_TOKEN_SOURCESYSTEM,
 	TECH_NAME_SOURCESYSTEM,
 	from
-	RAWB_FAC.V_HIST_ANEP_G0
+	RAWB_LOG.V_HIST_ANEP_G0
  where 
 	BUKRS = '3130'
 AND
 AFABE = '40'
-	 or tech_dml_flag = 'D'
 select
 	RDIF_TECH_TIMESTAMP_NUMBER,
 	MANDT,
@@ -266,10 +267,9 @@ select
 	RDIF_TECH_TIMESTAMP_NUMBER,
 	MANDT,
 	from
-	RAWB_LOG.V_HIST_T001K_G0
+	RAWB_MAN.V_HIST_T001K_G0
  where 
 	BWKEY = '3130'
-	 or tech_dml_flag = 'D'
 select
 	MANDT,
 	RDIF_TECH_TIMESTAMP_NUMBER,
@@ -303,7 +303,6 @@ select
 	RAWB_MAN.V_HIST_TRUG_G0
  where 
 	WERKS = '3130'
-	 or tech_dml_flag = 'D'
 select
 	RDIF_TECH_TIMESTAMP_NUMBER,
 	RDIF_TECH_TIMESTAMP,
@@ -336,12 +335,11 @@ select
 	RDIF_TECH_TIMESTAMP_NUMBER,
 	MANDT,
 	from
-	RAWB_MAN.V_HIST_TRUGT_G0
+	RAWB_PRD.V_HIST_TRUGT_G0
  where 
 	WERKS = '3130'
 AND
 SPRAS IN ('D', 'E')
-	 or tech_dml_flag = 'D'
 select
 	XFHDW,
 	XBEWW,
@@ -416,7 +414,7 @@ select
 	ATINN,
 	MESRT,
 	from
-	RAWB_PRD.V_CUSN_MARM_G0
+	RAWB_LOG.V_CUSN_MARM_G0
  where 
 	MARC.WERKS = '3130'
 AND
@@ -503,7 +501,7 @@ select
 	RDIF_TECH_TIMESTAMP,
 	RDIF_TECH_TIMESTAMP_NUMBER,
 	from
-	RAWB_PRD.V_HIST_MARM_G0
+	RAWB_QM.V_HIST_MARM_G0
  where 
 	MARC.WERKS = '3130'
 AND
@@ -514,7 +512,6 @@ AND
 MARA.Z0MX_SYSTEMID = MARC.Z0MX_SYSTEMID
 AND
 MARA.Z0MX_SYSTEMID = 'SAPPOE0110'
-	 or tech_dml_flag = 'D'
 select
 	TECH_NAME_SOURCESYSTEM,
 	TECH_TIMESTAMP,
@@ -1026,7 +1023,6 @@ select
 	RAWB_QM.V_HIST_QALS_G0
  where 
 	WERK = '3130'
-	 or tech_dml_flag = 'D'
 select
 	TECH_TOKEN_SOURCESYSTEM,
 	TECH_NAME_SOURCESYSTEM,
@@ -1784,4 +1780,3 @@ OR
 BWN1 = '3130'
 OR
 BWN2 = '3130'
-	 or tech_dml_flag = 'D'

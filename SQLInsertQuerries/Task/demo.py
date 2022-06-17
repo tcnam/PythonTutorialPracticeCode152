@@ -63,8 +63,8 @@ for synonym_name in synonym_names:
             for key in area_dict.keys():
                 if getTableName(synonym_name)==key:
                     create_view_command=create_view_command+'\n where \n\t'+area_dict[key]
-                    if isHist(synonym_name)==True:
-                        create_view_command=create_view_command+"\n\t or tech_dml_flag = 'D'"
+                    # if isHist(synonym_name)==True:
+                    #     create_view_command=create_view_command+"\n\t or tech_dml_flag = 'D'"
                     break
                 
             print(create_view_command)
@@ -79,8 +79,8 @@ for synonym_name in synonym_names:
             for key in area_dict.keys():
                 if getTableName(synonym_name)==key:
                     create_view_command=create_view_command+'\n where \n\t'+area_dict[key]
-                    if isHist(synonym_name)==True:
-                        create_view_command=create_view_command+"\n\t or tech_dml_flag = 'D'"
+                    # if isHist(synonym_name)==True:
+                    #     create_view_command=create_view_command+"\n\t or tech_dml_flag = 'D'"
                     break
             print(create_view_command)
             f.write(create_view_command+'\n')
